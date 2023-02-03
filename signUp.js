@@ -72,33 +72,37 @@ createacctbtn.addEventListener("click", () => {
     isVerified = false;
   }
 
-  createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
-    .then(() => {
-      window.alert("Success! Account Created");
-      window.location = "./createTask.html";
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-      window.alert(errorMessage);
+  if (isVerified) {
+    createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+      .then(() => {
+        window.alert("Success! Account Created");
+        window.location = "./createTask.html";
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        window.alert(errorMessage);
 
-      // window.alert("Error Occurred. Try Again")
-    });
+        // window.alert("Error Occurred. Try Again")
+      });
+  }
 });
 
 submitButton.addEventListener("click", function () {
   email = emailInput.value;
   password = passwordInput.value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      window.alert("Success! Welcome Back");
-      window.location = "./createTask.html";
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-      window.alert(errorMessage);
-      // window.alert("Error Occurred. Try Again")
-    });
+  if (isVerified) {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        window.alert("Success! Welcome Back");
+        window.location = "./createTask.html";
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        window.alert(errorMessage);
+        // window.alert("Error Occurred. Try Again")
+      });
+  }
 });
 
 signupButton.addEventListener("click", () => {
